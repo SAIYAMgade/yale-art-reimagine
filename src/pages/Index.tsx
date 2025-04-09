@@ -6,6 +6,13 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselPrevious, 
+  CarouselNext 
+} from '@/components/ui/carousel';
 
 const Index = () => {
   return (
@@ -31,8 +38,41 @@ const Index = () => {
           </div>
         </section>
         
+        {/* Gallery Section */}
+        <section className="py-16 bg-white">
+          <div className="yale-container">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">Student Gallery</h2>
+            <Carousel className="max-w-5xl mx-auto">
+              <CarouselContent>
+                {[
+                  { src: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", alt: "Art installation" },
+                  { src: "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", alt: "Sculpture exhibition" },
+                  { src: "https://images.unsplash.com/photo-1551732998-9573f695fdbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", alt: "Painting studio" },
+                  { src: "https://images.unsplash.com/photo-1574182245530-967d9b3831af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", alt: "Design workspace" },
+                ].map((image, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <div className="overflow-hidden rounded-lg h-80">
+                        <img 
+                          src={image.src} 
+                          alt={image.alt} 
+                          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex items-center justify-center mt-4">
+                <CarouselPrevious className="static transform-none mx-2" />
+                <CarouselNext className="static transform-none mx-2" />
+              </div>
+            </Carousel>
+          </div>
+        </section>
+        
         {/* Programs Section */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-gray-50">
           <div className="yale-container">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Programs</h2>
@@ -41,17 +81,42 @@ const Index = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
-                { name: "Graphic Design", description: "MFA in Graphic Design focuses on the development of a cohesive, investigative body of work." },
-                { name: "Painting/Printmaking", description: "MFA in Painting/Printmaking offers students the opportunity to develop their individual art practice." },
-                { name: "Photography", description: "MFA in Photography provides an intensive graduate education in the creation and study of photography." },
-                { name: "Sculpture", description: "MFA in Sculpture enables students to develop their work in a context of vigorous critical discussion." }
+                { 
+                  name: "Graphic Design", 
+                  description: "MFA in Graphic Design focuses on the development of a cohesive, investigative body of work.", 
+                  image: "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                },
+                { 
+                  name: "Painting/Printmaking", 
+                  description: "MFA in Painting/Printmaking offers students the opportunity to develop their individual art practice.", 
+                  image: "https://images.unsplash.com/photo-1579783928621-7a13d66a62b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                },
+                { 
+                  name: "Photography", 
+                  description: "MFA in Photography provides an intensive graduate education in the creation and study of photography.", 
+                  image: "https://images.unsplash.com/photo-1554048612-b6a482bc67e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                },
+                { 
+                  name: "Sculpture", 
+                  description: "MFA in Sculpture enables students to develop their work in a context of vigorous critical discussion.", 
+                  image: "https://images.unsplash.com/photo-1621886292650-520f76c747d6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
+                }
               ].map((program, index) => (
-                <Card key={index} className="p-6 hover:shadow-lg transition-all-300">
-                  <h3 className="text-xl font-semibold mb-3">{program.name}</h3>
-                  <p className="text-gray-600 mb-4">{program.description}</p>
-                  <Link to="/about" className="inline-flex items-center text-primary hover:underline">
-                    Learn more <ArrowRight size={16} className="ml-1" />
-                  </Link>
+                <Card key={index} className="overflow-hidden hover:shadow-lg transition-all-300 group">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={program.image} 
+                      alt={program.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-3">{program.name}</h3>
+                    <p className="text-gray-600 mb-4">{program.description}</p>
+                    <Link to="/about" className="inline-flex items-center text-primary hover:underline">
+                      Learn more <ArrowRight size={16} className="ml-1" />
+                    </Link>
+                  </div>
                 </Card>
               ))}
             </div>
@@ -59,7 +124,7 @@ const Index = () => {
         </section>
         
         {/* Application Info Section */}
-        <section className="py-16 md:py-24 bg-gray-50">
+        <section className="py-16 md:py-24 bg-white">
           <div className="yale-container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div>
@@ -75,18 +140,18 @@ const Index = () => {
                 </Button>
               </div>
               
-              <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="bg-gray-50 p-8 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold mb-4">Important Dates</h3>
                 <ul className="space-y-4">
-                  <li className="flex justify-between items-center pb-3 border-b border-gray-100">
+                  <li className="flex justify-between items-center pb-3 border-b border-gray-200">
                     <span className="text-gray-600">Application Opens</span>
                     <span className="font-medium">September 1, 2024</span>
                   </li>
-                  <li className="flex justify-between items-center pb-3 border-b border-gray-100">
+                  <li className="flex justify-between items-center pb-3 border-b border-gray-200">
                     <span className="text-gray-600">Application Deadline</span>
                     <span className="font-medium">January 4, 2025</span>
                   </li>
-                  <li className="flex justify-between items-center pb-3 border-b border-gray-100">
+                  <li className="flex justify-between items-center pb-3 border-b border-gray-200">
                     <span className="text-gray-600">Notification Date</span>
                     <span className="font-medium">March 15, 2025</span>
                   </li>
@@ -100,12 +165,14 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Testimonial Section */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="yale-container">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-2xl font-semibold italic mb-8">"The Yale School of Art is committed to the development of artistic excellence and the cultivation of a rigorous critical discourse."</h2>
-              <p className="text-gray-600">Kymberly Pinder, Ph.D., The Stavros Niarchos Foundation Dean</p>
+        {/* Creative Banner Section */}
+        <section className="py-16 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-90"></div>
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center mix-blend-overlay"></div>
+          <div className="yale-container relative z-10">
+            <div className="max-w-4xl mx-auto text-center text-white">
+              <h2 className="text-3xl md:text-5xl font-bold mb-8">"The Yale School of Art is committed to the development of artistic excellence and the cultivation of a rigorous critical discourse."</h2>
+              <p className="text-xl">Kymberly Pinder, Ph.D., The Stavros Niarchos Foundation Dean</p>
             </div>
           </div>
         </section>
